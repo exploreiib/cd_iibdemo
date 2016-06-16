@@ -1,6 +1,8 @@
 <project name="IIB-CI-BOOTSTRAP" default="bootstrap" basedir="..">
   <description>IIB Continuous Integration Demo (bootstrap script)</description>
 
+<property environment="env"/>
+
 <propertyfile comment="Project configuration properties" file="resources/Locations.properties"> 
 <entry value="${env.WORKSPACE}../../jobs/${env.JOB_NAME}" key="projectlocation"/>
  <entry value="/var/continousbuild/codereview/reports" key="reportdir"/>
