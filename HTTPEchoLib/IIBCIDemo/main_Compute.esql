@@ -8,4 +8,5 @@ CREATE COMPUTE MODULE main_Compute
 			|| CAST(' bar' AS BLOB CCSID 1208);
 		RETURN TRUE;
 	END;
+
  END MODULE;
