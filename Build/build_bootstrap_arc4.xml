@@ -3,7 +3,7 @@
 
 <property environment="env"/>
 
-<propertyfile comment="Project configuration properties" file="resources/Locations.properties"> 
+<propertyfile comment="Project configuration properties" file="="/var/continousbuild/utilities/Arc4/resources/Locations.properties"> 
 <entry value="${env.WORKSPACE}../../jobs/${env.JOB_NAME}" key="projectlocation"/>
  <entry value="/var/continousbuild/codereview/reports" key="reportdir"/>
 </propertyfile>
