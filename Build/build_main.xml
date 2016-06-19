@@ -57,7 +57,7 @@
       </exec>
     -->
 
-    <exec executable="mqsiapplybaroverride">
+    <!--<exec executable="mqsiapplybaroverride">
       <arg value="-b" />
       <arg value="${iib.bar}" />
       <arg value="-m" />
@@ -98,6 +98,6 @@
       <classpath>
         <pathelement location="TestClient/bin" />
       </classpath>
-    </java>
+    </java>-->
   </target>
 </project>
