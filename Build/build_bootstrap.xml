@@ -20,7 +20,7 @@
       <arg value="-n" />
       <arg value="sh" />
       <arg value="-c" />
-      <arg value="chown -R ${wkspc.owner} ${env.WORKSPACE}; chmod -R ${wkspc.mode} ${env.WORKSPACE}" />
+      <arg value="chown -R ${wkspc.owner} ${env.SOURCE_CODE_DIR}; chmod -R ${wkspc.mode} ${env.SOURCE_CODE_DIR}" />
     </exec>
 
     <!-- call Ant with build_main.xml as another user in a new shell -->
