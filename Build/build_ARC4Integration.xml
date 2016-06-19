@@ -1,0 +1,46 @@
+<project name="IIB-CI-BOOTSTRAP" default="bootstrap" basedir=".">
+  <description>IIB Continuous Integration Demo (bootstrap script)</description>
+
+<property environment="env"/>
+
+<property name="reportDirectory" value="/var/continousbuild/codereview/reports/${env.LAST_JOB_NAME}/${env.LAST_BUILD_ID}"/>
+
+<propertyfile comment="Project configuration properties" file="resources/Locations.properties"> 
+ <entry value="${env.SOURCE_CODE_DIR}" key="projectlocation"/>
+<entry value="${reportDirectory}" key="reportdir"/>
+</propertyfile>
+
+
+<target name="dir.check">
+    <condition property="dir.exists">
+      <available file="${reportDirectory}" type="dir"/>
+    </condition>
+  </target>
+
+<target name="create-report-dir" depends="dir.check" unless="dir.exists">
+    <echo>${reportDirectory} missing"</echo>
+    <mkdir dir="${reportDirectory}"/> 
+  </target>
+
+
+
+<target name="executeARC4" depends="create-report-dir"> 
+
+<echo message="Jenkins workspace: ${env.DSOURCE_CODE_DIR}"/>
+    <echo message="Job directory: ${env.SOURCE_CODE_DIR}../../jobs/${LAST_JOB_NAME}"/>
+    <echo message="Build data: ${env.SOURCE_CODE_DIR}../../jobs/${env.LAST_JOB_NAME}/build/${env.LAST_BUILD_ID}"/>
+
+<echo message="Report path: ${no.report.dir}"/>
+
+
+     <java fork="true" failonerror="yes" classname="arc4.UI.CodeReviewNoUI">
+			 	<classpath>
+	           			<pathelement location="./Arc4.jar"/>
+	           			<pathelement path="${java.class.path}"/>
+	         		</classpath>
+</java>
+
+  </target>
+
+
+</project>
