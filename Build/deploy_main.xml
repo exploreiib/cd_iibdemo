@@ -1,0 +1,57 @@
+<project name="IIB-CI-MAIN" default="deploySource" basedir="..">
+  <description>IIB Continuous Integration Demo (main script)</description>
+
+  <target name="init">
+    <tstamp />
+    <property environment="env" />
+    <property name="path.build" value="Build" />
+    <property file="${path.build}/build.properties" />
+  </target>
+
+  <target name="deploySource" depends="init">
+    <!-- clean workspace -->
+   <!-- <delete failonerror="false" verbose="true">
+      <fileset dir="." includes="**/*.bar" />
+      <fileset dir="TestClient/bin" includes="**/*" />
+      <fileset dir="TestClient" includes="**/*.jar" />
+      <fileset dir="HTTPEchoLibJava/bin" includes="**/*" />
+      <fileset dir="HTTPEchoLibJava" includes="**/*.jar" />
+      <fileset dir="HTTPJavaEchoAppJava/bin" includes="**/*" />
+      <fileset dir="HTTPJavaEchoAppJava" includes="**/*.jar" />
+    </delete>-->
+
+    <exec executable="id" />
+    <exec executable="mqsiservice">
+      <arg value="-v" />
+    </exec>
+    <exec executable="mqsilist" />
+    <exec executable="mqsilist">
+      <arg value="${iib.node}" />
+    </exec>
+
+    <exec executable="mqsideploy">
+      <arg value="${iib.node}" />
+      <arg value="-e" />
+      <arg value="${iib.svr}" />
+      <arg value="-a" />
+      <arg value="${iib.bar}" />
+      <arg value="-m" />
+    </exec>
+
+    <exec executable="mqsireportproperties">
+      <arg value="${iib.node}" />
+      <arg value="-e" />
+      <arg value="${iib.svr}" />
+      <arg value="-o" />
+      <arg value="HTTPConnector" />
+      <arg value="-r" />
+    </exec>
+
+    <!--<java classname="demo.iib.ci.TestClient">
+      <arg value="${path.build}/build.properties" />
+      <classpath>
+        <pathelement location="TestClient/bin" />
+      </classpath>
+    </java>-->
+  </target>
+</project>
